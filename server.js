@@ -15,10 +15,87 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Object to store user data
 const users = {};
 
+
+
+// This is the SQL Database
+const sqlite3 = require('sqlite3').verbose()
+const db = new sqlite3.Database('./election.db')
+
+db.serialize(() => {
+  db.run(
+    `CREATE TABLE IF NOT EXISTS roles ( 
+     id INT AUTO_INCREMENT PRIMARY KEY, 
+     role TEXT 
+)`);
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS users ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name TEXT, 
+    middle_name TEXT, 
+    last_name TEXT, 
+    dob DATE, 
+    role_id INT,
+    photo BLOB
+)`);
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS parties ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    party TEXT, 
+    logo BLOB
+)`);
+    
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS positions ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    position TEXT 
+)`);
+
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS candidates ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name TEXT, 
+    middle_name TEXT, 
+    last_name TEXT, 
+    position TEXT, 
+    party_id INT,
+    photo BLOB
+)`);
+
+db.run(
+    `CREATE TABLE IF NOT EXISTS votes ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    votes TEXT 
+)`);
+
+//   const stmt = db.prepare('INSERT INTO lorem VALUES (?)')
+
+//   for (let i = 0; i < 10; i++) {
+//     stmt.run(`Ipsum ${i}`)
+//   }
+
+//   stmt.finalize()
+
+  db.each('SELECT * FROM auth', (err, row) => {
+    console.log(row)
+  })
+
+
+
+})
+
+db.close()
+
+
+
 // Route to login form
 app.get('/login', (req, res) => {
     res.render('login.ejs');
 });
+
 
 // Handle login form submission
 app.post('/login', (req, res) => {
