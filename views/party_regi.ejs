@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singup</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+
+    <div class="wrapper_party">
+        <span class="icon-close">
+            <ion-icon name="close-circle"></ion-icon>
+        </span>
+        <div class="form-box"></div>
+        <form action="/voterregi" method="post" id="reg_form">
+            <h2>Voter Registration</h2>
+
+            <div class="input-box">
+                <span class="icon"> <ion-icon name="person"></ion-icon></ion-icon></span>
+                <input type="party_name" id="partyname" name="partyname" required>
+                <label>Party Name</label>
+            </div>
+        
+            <div class="input-box">
+                <span class="icon"><ion-icon name="image"></ion-icon></span>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+            </div>
+
+            <div class="myremember-fo">
+                    <label><input type="checkbox">
+                        I agree to RACO</label>
+                    <a href="#">Terms & Condiction</a>
+                <button type="submit" class="btn">Sing Up</button>
+                <div>
+                    
+            <div class="login-register">
+                    <p>Already have an account?<a href="Login.html" class="register-link">Login</a></p>
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="voter_regi.js"></script>
+</body>
+</html>

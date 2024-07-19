@@ -3,9 +3,8 @@ body, html {
     margin: 0;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    /* background-color: #a7a8a9; */
     background: url('backgroung.jpg') no-repeat;
+    background-color: #f1efef;
     background-size: cover;
     
 }
@@ -214,6 +213,129 @@ p{
 
 
 
+/* VOTER REGISTRATION FORM */
+.wrapper_party {
+    position: relative;
+    width: 450px;
+    height: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center; 
+    margin: 40px;
+    overflow: hidden;
+}
+.wrapper_party .icon-close{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+}
+.wrapper_party h2{
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+    margin-top: 30px;
+}
+.myremember-fo{
+    font-size: 1em;
+    color: #162938;
+    font-weight: 300;
+    margin: 15px 0;
+    justify-content: space-between;
+
+}
+.myremember-fo label input{
+    accent-color: #162938;
+    margin-left: 3px;
+}
+.myremember-fo a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+.myremember-fo a:hover{
+    text-decoration: underline;
+}
+
+p{
+  font-size: 14px;
+  margin: 15px 0;
+  display: inline-block;
+  color: #000;
+  padding: 5px 20px;
+}
+
+/* PARTY REGISTRATION FORM */
+.wrapper_party {
+    position: relative;
+    width: 450px;
+    height: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center; 
+    margin: 40px;
+    overflow: hidden;
+}
+.wrapper_party .icon-close{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+}
+.wrapper_party h2{
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+    margin-top: 30px;
+}
+.myremember-fo{
+    font-size: 1em;
+    color: #162938;
+    font-weight: 300;
+    margin: 15px 0;
+    justify-content: space-between;
+
+}
+.myremember-fo label input{
+    accent-color: #162938;
+    margin-left: 3px;
+}
+.myremember-fo a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+.myremember-fo a:hover{
+    text-decoration: underline;
+}
+
+p{
+  font-size: 14px;
+  margin: 15px 0;
+  display: inline-block;
+  color: #000;
+  padding: 5px 20px;
+}
 
 
 
@@ -221,15 +343,3 @@ p{
 
 
 
-
-
-
-
-/* 
-input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 0;
-            border: 1px solid #ccc;
-        }  */
