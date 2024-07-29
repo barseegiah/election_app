@@ -22,69 +22,69 @@ const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('./election.db')
 
 db.serialize(() => {
-  db.run(
-    `CREATE TABLE IF NOT EXISTS roles ( 
-     id INT AUTO_INCREMENT PRIMARY KEY, 
-     role TEXT 
+db.run(
+    `CREATE TABLE IF NOT EXISTS "roles" (
+	"id"	INTEGER,
+	"role"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
 db.run(
-    `CREATE TABLE IF NOT EXISTS users ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    firstname TEXT, 
-    middlename TEXT, 
-    lastname TEXT, 
-    dob DATE, 
-    role_id INT,
-    photo BLOB
+    `CREATE TABLE IF NOT EXISTS "users" (
+	"id"	INTEGER,
+	"firstname"	TEXT,
+	"middlename"	TEXT,
+	"lastname"	TEXT,
+	"dob"	DATE,
+	"photo"	BLOB,
+	PRIMARY KEY("id" AUTOINCREMENT)
 )`);
+
 db.run(
-    `CREATE TABLE IF NOT EXISTS auth ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    username TEXT, 
+    `CREATE TABLE IF NOT EXISTS "auth" (
+	"id"	INTEGER,
+	username TEXT, 
     user_id INT,
-    password TEXT
+    password TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
 db.run(
     `CREATE TABLE IF NOT EXISTS parties ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
+    "id" INTEGER, 
     party TEXT, 
-    logo BLOB
+    logo BLOB,
+    PRIMARY KEY("id" AUTOINCREMENT)
 )`);
     
 
 db.run(
     `CREATE TABLE IF NOT EXISTS positions ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    position TEXT 
+    "id" INTEGER, 
+    position TEXT, 
+    PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
 
 db.run(
     `CREATE TABLE IF NOT EXISTS candidates ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
+    "id" INTEGER, 
     firstname TEXT, 
     middlename TEXT, 
     lastname TEXT, 
     position TEXT, 
     party_id INT,
-    photo BLOB
+    photo BLOB,
+    PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
 db.run(
     `CREATE TABLE IF NOT EXISTS votes ( 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    votes TEXT 
+    "id" INTEGER, 
+    votes TEXT,
+    PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
-//   const stmt = db.prepare('INSERT INTO lorem VALUES (?)')
-
-//   for (let i = 0; i < 10; i++) {
-//     stmt.run(`Ipsum ${i}`)
-//   }
-
-//   stmt.finalize()
 
   db.each('SELECT * FROM auth', (err, row) => {
     console.log(row)
@@ -181,7 +181,7 @@ app.post('/voterregi', (req, res) => {
 
     // Insert user first_name, middle_name, last_name, dob, photo into the users table
     const userQuery = `
-    INSERT INTO users (first_name, middle_name, last_name, dob, photo)
+    INSERT INTO users (firstname, middlename, lastname, dob, photo)
     VALUES (?, ?, ?, ?, ?)
   `;
 
@@ -191,15 +191,18 @@ app.post('/voterregi', (req, res) => {
           return res.send('Error occurred during registration');
       }
 
+      // Get the last inserted user ID
+      const user_id = this.lastID;
+
 
     // Insert usernam and password data into the auth table
     const authQuery = `
-      INSERT INTO auth (username, password)
-      VALUES (?, ?)
+      INSERT INTO auth (username, user_id, password)
+      VALUES (?, ?, ?)
     `;
 
-
-    db.run(authQuery, [username, password], function(err) {
+    // Checking if user already exit
+    db.run(authQuery, [username, user_id, password], function(err) {
         if (err) {
             if (err.code === 'SQLITE_CONSTRAINT') {
                 // Username already exists

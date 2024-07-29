@@ -214,10 +214,10 @@ p{
 
 
 /* VOTER REGISTRATION FORM */
-.wrapper_party {
+.wrapper_voter {
     position: relative;
     width: 450px;
-    height: 420px;
+    height: 820px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -228,7 +228,7 @@ p{
     margin: 40px;
     overflow: hidden;
 }
-.wrapper_party .icon-close{
+.wrapper_voter .icon-close{
     position: absolute;
     top: 5px;
     right: 0;
@@ -238,7 +238,7 @@ p{
     display: flex;
     justify-content: center;
 }
-.wrapper_party h2{
+.wrapper_voter h2{
     font-size: 2em;
     color: #162938;
     text-align: center;
