@@ -85,15 +85,7 @@ db.run(
     PRIMARY KEY("id" AUTOINCREMENT)
 )`);
 
-
-  db.each('SELECT * FROM auth', (err, row) => {
-    console.log(row)
-  })
-
 })
-
-db.close()
-
 
 // Route to login form
 app.get('/login', (req, res) => {
@@ -150,11 +142,19 @@ app.post('/singup', (req, res) => {
     res.redirect('/login');
 });
 
-
-// Voter Registration form route
 app.get('/voterregi', (req, res) => {
-    res.render('voter_regi.ejs');
+    const db = new sqlite3.Database('./election.db'); // Open the database
+    db.all('SELECT * FROM roles', function(error, roles) {
+        if (error) {
+            return res.send('Error occurred while fetching roles');
+        }
+        console.log(roles);
+        res.render('voter_regi.ejs', { roles: roles }); // Pass roles to the template
+    });
+    db.close(); // Close the database connection
 });
+
+
 
 // Handle voter registration form submission
 app.post('/voterregi', (req, res) => {
@@ -212,7 +212,7 @@ app.post('/voterregi', (req, res) => {
             return res.send('Error occurred during registration');
         }
 
-   // Log the user information to the console
+//    Log the user information to the console
    console.log(`New user signed up:
     \nFull Name: ${firstname}
     \nMiddle Name: ${middlename} 
