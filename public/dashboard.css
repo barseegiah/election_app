@@ -101,117 +101,6 @@ body{
 
 
 
-
-
-/* Entry, Budget, Edit, Delet, */
-.wrapper{
-    width: 90%;
-    font-size: 16px;
-    max-width: 43.75em;
-    margin: 8em auto;
-}
-.container{
-    width: 100%;
-}
-.sub-container{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3em;
-}
-.flex {
-    display: flex;
-    align-items: center;
-}
-.flex-space{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.wrapper h3{
-    color: #363d55;
-    font-weight: 500;
-    margin-bottom: 0.6em;
-}
-.container input{
-    display: block;
-    width: 100%;
-    padding: 0.6em 0.3em;
-    border: 1px solid #d0d0d0;
-    border-radius: 0.3em;
-    color: #414a67;
-    outline: none;
-    font-weight: 400;
-    margin-bottom: 0.6em;
-}
-.container input:focus{
-    border-color: #1ba7f8;
-}
-
-.cardd{
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    border-radius: 0.3em;
-    padding: 1.25em 0.9em;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
-
-.submit{
-    font-size: 1em;
-    margin-top: 0.8em;
-    background-color: #FFEA20;
-    border: none;
-    outline: none;
-    color: #000000;
-    padding: 0.6em 1.2em;
-    border-radius: 0.3em;
-    cursor: pointer;
-}
-
-.sublist-content{
-    width: 100%;
-    border-left: 0.3em solid #FFEA20;
-    margin-bottom: 0.6em;
-    padding: 0.5em 0;
-}
-.product{
-    font-weight: 500;
-    margin-left: 6.5em;
-    color: #363d55;
-    margin-left: 1%;
-}
-.icons-container{
-    width: 5em;
-    margin: 1.2em;
-    align-items: center;
-}
-.product-title{
-    margin-bottom: 1em;
-}
-.hide{
-    display: none;
-}
-.error{
-    color: #ff2024;
-}
-.edit{
-    margin-left: 5%;
-} 
-.edit, 
-.delete{
-    background: transparent;
-    cursor: pointer;
-    margin-right: 1.5em;
-    border: none;
-    color: #c2af06;
-}
-.notification{
-    color:#ff2024;
-}
-
-
-
 /* Dashboard Styling */
 .material-icons-outlined{
     vertical-align: middle;
@@ -264,7 +153,7 @@ body{
     margin-bottom: 30px;
 }
 .sidebar-brand{
-    margin-top: 15px;
+    margin-top: 0px;
     font-size: 20px;
     font-weight: 700;
 }

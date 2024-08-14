@@ -103,10 +103,6 @@ app.post('/login', (req, res) => {
     }
 });
 
-// Route to dashboard
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard.ejs');
-});
 
 // Route to signup form
 app.get('/singup', (req, res) => {
@@ -142,6 +138,7 @@ app.post('/singup', (req, res) => {
     res.redirect('/login');
 });
 
+// This code block is fetching the roles from the role table
 app.get('/voterregi', (req, res) => {
     const db = new sqlite3.Database('./election.db'); // Open the database
     db.all('SELECT * FROM roles', function(error, roles) {
@@ -153,6 +150,27 @@ app.get('/voterregi', (req, res) => {
     });
     db.close(); // Close the database connection
 });
+
+// Fetching numbers of users from the user table
+app.get('/dashboard', (req, res) => {
+    const db = new sqlite3.Database('./election.db'); // Open the database
+
+    // Query to count the number of users
+    db.get('SELECT COUNT(*) AS userCount FROM users', function(error, result) {
+        if (error) {
+            return res.send('Error occurred while fetching the number of users');
+        }
+        const userCount = result.userCount; // Extract userCount from the result
+
+        console.log(result);
+       // Pass the userCount to the EJS template
+       res.render('dashboard.ejs', { userCount: userCount });
+        
+    });
+
+    db.close(); // Close the database connection
+});
+
 
 
 
@@ -186,6 +204,7 @@ app.post('/voterregi', (req, res) => {
   `;
 
   const db = new sqlite3.Database('./election.db'); // Open the database again for inserting data
+//   This blog is insecting data to the user table
   db.run(userQuery, [firstname, middlename, lastname, dob, photo], function(err) {
       if (err) {
           return res.send('Error occurred during registration');
@@ -195,7 +214,7 @@ app.post('/voterregi', (req, res) => {
       const user_id = this.lastID;
 
 
-    // Insert usernam and password data into the auth table
+    // Insert username and password data into the auth table
     const authQuery = `
       INSERT INTO auth (username, user_id, password)
       VALUES (?, ?, ?)
@@ -222,7 +241,7 @@ app.post('/voterregi', (req, res) => {
     \nPhoto: ${photo}`);
 
     // Redirect to login page after successful signup
-    res.redirect('/dashboard');
+    res.redirect('/login');
 });
 });
  db.close(); // Close the database connection
